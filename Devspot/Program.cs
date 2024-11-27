@@ -1,4 +1,6 @@
 using Devspot.Data;
+using Devspot.Models;
+using Devspot.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("database"));
 });
+
+builder.Services.AddScoped<IRepository<JobPosting>, JobPostingRepository>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(opt =>
 {
