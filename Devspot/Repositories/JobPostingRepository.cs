@@ -14,7 +14,10 @@ public class JobPostingRepository : IRepository<JobPosting>
         => (await _context.JobPostings.ToListAsync())!;
 
     public async Task<JobPosting?> GetByIdAsync(int id)
-        => await _context.JobPostings.FindAsync(id);
+    {
+        var job = await _context.JobPostings.FindAsync(id);
+        return job ?? throw new KeyNotFoundException();
+    }
 
     public async Task AddAsync(JobPosting entity)
     {

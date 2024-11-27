@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devspot", "Devspot\Devspot.csproj", "{C3BB7284-6EF3-4D21-A1F6-FBB45E62C2F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devspot.Tests", "Devspot.Tests\Devspot.Tests.csproj", "{FD984D6D-F2A6-44AC-BB79-E2E34C7CB630}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C3BB7284-6EF3-4D21-A1F6-FBB45E62C2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3BB7284-6EF3-4D21-A1F6-FBB45E62C2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3BB7284-6EF3-4D21-A1F6-FBB45E62C2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD984D6D-F2A6-44AC-BB79-E2E34C7CB630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD984D6D-F2A6-44AC-BB79-E2E34C7CB630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD984D6D-F2A6-44AC-BB79-E2E34C7CB630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD984D6D-F2A6-44AC-BB79-E2E34C7CB630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

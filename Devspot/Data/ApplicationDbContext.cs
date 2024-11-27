@@ -8,5 +8,5 @@ public class ApplicationDbContext : IdentityDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
     
-    internal DbSet<JobPosting?> JobPostings { get; set; }
+    public DbSet<JobPosting> JobPostings { get; set; }
 }
