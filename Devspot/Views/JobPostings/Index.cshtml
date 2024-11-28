@@ -1,8 +1,47 @@
+@using Devspot.Constants
 @model IEnumerable<JobPosting>
 
-<h1>Job Postings</h1>
+<h1 class="text-center m-5">All Developer Jobs</h1>
 
-@foreach (var job in Model)
+<div class="list-group">
+    @foreach (var job in Model)
+    {
+        <div class="list-group-item" id="job-posting-@job.Id">
+            <h3>@job.Title</h3>
+            <p>@job.Description</p>
+            <p><strong>Company: </strong>@job.Company</p>
+            <p><strong>Location: </strong>@job.Location</p>
+            <p><strong>Posted Date: </strong>@job.PostedDate.ToShortDateString()</p>
+            
+            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Employer))
+            {
+                <div>
+                    <button class="btn btn-sm btn-danger" onclick={handleOnClick(@job.Id)}>Delete</button>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts
 {
-    
+    <script>
+        // -- JS Can Exist Here --
+        const handleOnClick = async (id) => {
+            if (confirm("Would you like to remove this job posting?"))
+            {
+                $.ajax({
+                    url: "@Url.Action("Delete", "JobPostings")/" + id,
+                    type: "delete",
+                    success: (result) => {
+                        // -- Visual Logic goes here as its a http request
+                        $("#job-posting-" + id).remove();
+                    },
+                    error: (err) => {
+                        alert("An error occured!");
+                    },
+                }); // ../jobpostings/delete/5
+            }
+        };
+    </script>
 }
