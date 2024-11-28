@@ -10,12 +10,26 @@ public static class UserSeeder
         var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
         await CreateUserWithRole(userManager, "admin@devspot.com", "Admin123!", Roles.Admin);
-        await CreateUserWithRole(userManager, "jobseeker@devspot.com", "JobSeeker123!", Roles.JobSeeker);
-        await CreateUserWithRole(userManager, "employer@devspot.com", "Employer123!", Roles.Employer);
+        await CreateUserWithRole(
+            userManager,
+            "jobseeker@devspot.com",
+            "JobSeeker123!",
+            Roles.JobSeeker
+        );
+        await CreateUserWithRole(
+            userManager,
+            "employer@devspot.com",
+            "Employer123!",
+            Roles.Employer
+        );
     }
 
-    private static async Task CreateUserWithRole(UserManager<IdentityUser> userManager, string email, string password,
-        string role)
+    private static async Task CreateUserWithRole(
+        UserManager<IdentityUser> userManager,
+        string email,
+        string password,
+        string role
+    )
     {
         if (await userManager.FindByEmailAsync(email) is null)
         {
@@ -23,11 +37,14 @@ public static class UserSeeder
             {
                 Email = email,
                 EmailConfirmed = true,
-                UserName = email
+                UserName = email,
             };
 
             var result = await userManager.CreateAsync(user, password);
-            if (!result.Succeeded) throw new Exception($"Failed to create user with email {user.Email}. Errors: {string.Join(",", result.Errors)}");
+            if (!result.Succeeded)
+                throw new Exception(
+                    $"Failed to create user with email {user.Email}. Errors: {string.Join(",", result.Errors)}"
+                );
 
             await userManager.AddToRoleAsync(user, role);
         }

@@ -14,10 +14,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 
 builder.Services.AddScoped<IRepository<JobPosting>, JobPostingRepository>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(opt =>
-{
-    opt.SignIn.RequireConfirmedAccount = false; // Development
-}).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder
+    .Services.AddDefaultIdentity<IdentityUser>(opt =>
+    {
+        opt.SignIn.RequireConfirmedAccount = false; // Development
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
@@ -38,13 +41,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-
 app.MapStaticAssets();
 app.MapRazorPages();
-app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
+app.MapControllerRoute(name: "default", pattern: "{controller=JobPostings}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
